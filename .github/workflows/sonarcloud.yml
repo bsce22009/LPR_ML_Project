@@ -1,4 +1,4 @@
-name: SonarCloud
+name: SonarCloud Scan
 
 on:
   push:
@@ -11,12 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Node.js (if you have JS dependencies)
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: sonarsource/sonarqube-scan-action@v2
         with:
-          organization: bsce22009
-          token: ${{ secrets.SONAR_TOKEN }}
+          args: >
+            -Dsonar.organization=bsce22009
+            -Dsonar.projectKey=bsce22009_LPR_ML_Project
+            -Dsonar.sources=.
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.login=${{ secrets.SONAR_TOKEN_2 }}
