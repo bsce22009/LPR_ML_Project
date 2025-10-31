@@ -19,5 +19,6 @@ jobs:
             -Dsonar.organization=bsce22009
             -Dsonar.projectKey=bsce22009_LPR_ML_Project
             -Dsonar.sources=.
+            -Dsonar.inclusions=**/*.html,**/*.css,**/*.js
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.login=${{ secrets.SONAR_TOKEN_2 }}
