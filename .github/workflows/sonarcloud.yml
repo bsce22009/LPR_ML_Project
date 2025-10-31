@@ -1,27 +1,22 @@
-name: SonarCloud Scan
+name: SonarCloud
 
 on:
   push:
     branches:
       - main
   pull_request:
-    branches:
-      - main
 
 jobs:
-  sonar:
+  sonarcloud:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Set up Node.js (if you have JS dependencies)
+        uses: actions/setup-node@v3
         with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+          node-version: '18'
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          organization: bsce22009
+          token: ${{ secrets.SONAR_TOKEN }}
